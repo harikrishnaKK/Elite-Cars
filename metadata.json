@@ -1,6 +1,6 @@
 {
-  "name": "SponsorCloud Investment Operating System",
-  "description": "Commercial real estate syndication, investor portal, offerings marketplace, distribution waterfalls, and capital management.",
+  "name": "Elite Motors — Luxury Dealership",
+  "description": "Curated selection of Audi, BMW, and Volvo prestige vehicles with bespoke concierge and financing.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

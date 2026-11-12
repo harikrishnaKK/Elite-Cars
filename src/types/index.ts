@@ -1,94 +1,58 @@
-export type ViewMode = 
-  | 'dashboard' 
-  | 'offerings' 
-  | 'portfolio' 
-  | 'distributions' 
-  | 'crm' 
-  | 'importer';
+export type Brand = 'AUDI' | 'BMW' | 'VOLVO';
 
-export type UserRole = 'investor' | 'sponsor';
+export type NavTab = 'showroom' | 'audi' | 'bmw' | 'volvo' | 'financing' | 'concierge' | 'portal';
 
-export type AssetClass = 'Multifamily' | 'Industrial' | 'Healthcare / Medical' | 'Mixed-Use Retail';
-
-export interface Deal {
+export interface Vehicle {
   id: string;
-  title: string;
-  location: string;
-  assetClass: AssetClass;
-  image: string;
-  status: 'Funding' | 'Closing Soon' | 'Fully Funded' | 'Operating';
-  targetIrr: number; // e.g. 18.2
-  equityMultiple: number; // e.g. 2.1
-  prefReturn: number; // e.g. 8.0
-  targetHoldYears: number; // e.g. 5
-  minInvestment: number; // e.g. 50000
-  totalRaise: number; // e.g. 14500000
-  amountRaised: number; // e.g. 11300000
-  projectedCoC: number; // e.g. 8.5
-  description: string;
-  businessPlan: string;
-  unitsOrSqFt: string;
-  underwriting: {
-    capRateOnCost: number;
-    exitCapRate: number;
-    debtLtv: number;
-    interestRate: number;
-    occupancy: number;
-  };
-  highlights: string[];
-}
-
-export interface InvestmentPosition {
-  id: string;
-  dealId: string;
-  dealTitle: string;
-  assetClass: AssetClass;
-  image: string;
-  location: string;
-  investedAmount: number;
-  investedDate: string;
-  currentValue: number;
-  totalDistributed: number;
-  unrealizedGain: number;
-  irrToDate: number;
-  ownershipPercent: number;
-  entityName: string;
-  lastQuarterYield: number;
-  status: 'Performing' | 'Ahead of Plan' | 'Stabilizing';
-}
-
-export interface DistributionRecord {
-  id: string;
-  date: string;
-  dealTitle: string;
-  amount: number;
-  prefAmount: number;
-  rocAmount: number;
-  period: string;
-  payoutMethod: 'ACH Direct Deposit' | 'Wire Transfer';
-  status: 'Completed' | 'Processing';
-  pdfRef: string;
-}
-
-export interface TaxDocument {
-  id: string;
+  make: Brand;
+  model: string;
   year: number;
-  dealTitle: string;
-  docType: 'Schedule K-1' | 'Form 1099-DIV' | 'Annual Investor Statement';
-  status: 'Ready' | 'In Preparation';
-  dateUploaded: string;
-  fileSize: string;
+  trim: string;
+  badge?: string;
+  tagline: string;
+  price: number;
+  leaseMonthly: number;
+  image: string;
+  category: 'SUV' | 'Gran Coupe / Sedan' | 'Avant / Wagon' | 'Electric Grand Tourer';
+  isElectric?: boolean;
+  specs: {
+    horsepower: number;
+    torque: string;
+    zeroToSixty: string;
+    topSpeed: string;
+    engine: string;
+    transmission: string;
+    drivetrain: string;
+    efficiency: string;
+    exteriorColor: string;
+    interiorColor: string;
+    vin: string;
+    mileage: string;
+  };
+  features: string[];
+  status: 'In Stock' | 'Exclusive Allocation' | 'Arriving Soon';
 }
 
-export interface CrmLead {
+export interface TestDriveRequest {
   id: string;
-  name: string;
+  vehicleId: string;
+  vehicleTitle: string;
+  fullName: string;
   email: string;
   phone: string;
-  accreditationStatus: 'Verified 506(c)' | 'Self-Certified 506(b)' | 'Pending Verification';
-  entityType: 'LLC' | 'Individual' | 'Revocable Trust' | 'Self-Directed IRA';
-  targetDeal: string;
-  stage: 'Lead' | 'NDA / PPM Sent' | 'Soft Committed' | 'Funds Wired' | 'Closed';
-  committedAmount: number;
-  lastContact: string;
+  date: string;
+  timeSlot: string;
+  deliveryType: 'Showroom VIP Suite' | 'White-Glove Home Delivery';
+  address?: string;
+  notes?: string;
+  status: 'Confirmed' | 'Pending Concierge Dispatch';
+}
+
+export interface FinanceOption {
+  type: 'lease' | 'finance';
+  monthlyPayment: number;
+  downPayment: number;
+  termMonths: number;
+  aprOrFactor: number;
+  totalCost: number;
 }
